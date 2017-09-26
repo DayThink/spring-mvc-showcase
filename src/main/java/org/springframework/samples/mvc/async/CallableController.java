@@ -2,6 +2,8 @@ package org.springframework.samples.mvc.async;
 
 import java.util.concurrent.Callable;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,18 +15,26 @@ import org.springframework.web.context.request.async.WebAsyncTask;
 @Controller
 @RequestMapping("/async/callable")
 public class CallableController {
-
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@RequestMapping("/response-body")
 	public @ResponseBody Callable<String> callable() {
-
-		return new Callable<String>() {
+		System.out.println("Current Parent Thread name = " + Thread.currentThread().getName());
+		Long beginParentTime = System.currentTimeMillis();
+		logger.info("Invoke callable, beginParentTime = " + beginParentTime);
+		//
+		Callable<String> callable = new Callable<String>() {
 			@Override
 			public String call() throws Exception {
-				Thread.sleep(2000);
+                System.out.println("Current Child Thread name = " + Thread.currentThread().getName());
+                logger.info("Invoke callable, beginChildTime = " + System.currentTimeMillis());
+				Thread.sleep(5000);
 				return "Callable result";
 			}
 		};
+		System.out.println("Invoke callable, parent thread cost time = "
+				+ (System.currentTimeMillis() - beginParentTime));
+		return callable;
 	}
 
 	@RequestMapping("/view")

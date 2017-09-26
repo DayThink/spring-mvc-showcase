@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/messageconverters")
 public class MessageConvertersController {
@@ -42,6 +45,22 @@ public class MessageConvertersController {
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("foo", "bar");
 		map.add("fruit", "apple");
+		return map;
+	}
+
+	@RequestMapping(value="/form2", method=RequestMethod.GET)
+	public @ResponseBody Map<String, String> writeForm2() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("foo", "bar");
+		map.put("fruit", "apple");
+		return map;
+	}
+
+	@RequestMapping(value="/form3", method=RequestMethod.GET)
+	public Map<String, String> writeForm3() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("foo", "bar");
+		map.put("fruit", "apple");
 		return map;
 	}
 

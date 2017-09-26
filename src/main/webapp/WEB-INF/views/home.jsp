@@ -501,6 +501,8 @@ $(document).ready(function() {
 
 
 	$("a.textLink").click(function(){
+		console.log("a.textLink");
+		alert(--------------);
 		var link = $(this);
 		$.ajax({ url: link.attr("href"), dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, link); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, link); }});
 		return false;
@@ -540,6 +542,8 @@ $(document).ready(function() {
 	});
 
 	$("a.writeXmlLink").click(function() {
+		console.log("a.writeXmlLink");
+		
 		var link = $(this);
 		$.ajax({ url: link.attr("href"),
 			beforeSend: function(req) { 
@@ -558,6 +562,8 @@ $(document).ready(function() {
 	});					
 
 	$("form.readJsonForm").submit(function() {
+		console.log("form.readJsonForm");
+	
 		var form = $(this);
 		var button = form.children(":first");
 		var data = form.hasClass("invalid") ?
@@ -568,6 +574,8 @@ $(document).ready(function() {
 	});
 
 	$("a.writeJsonLink").click(function() {
+		console.log("a.writeJsonLink");
+		
 		var link = $(this);
 		$.ajax({ url: this.href,
 			beforeSend: function(req) {
@@ -585,6 +593,8 @@ $(document).ready(function() {
 	});
 
 	$("#readAtom").submit(function() {
+		console.log("readAtom");
+		
 		var form = $(this);
 		var button = form.children(":first");
 		$.ajax({ type: "POST", url: form.attr("action"), data: '<?xml version="1.0" encoding="UTF-8"?> <feed xmlns="http://www.w3.org/2005/Atom"><title>My Atom feed</title></feed>', contentType: "application/atom+xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
@@ -592,6 +602,8 @@ $(document).ready(function() {
 	});
 
 	$("#writeAtom").click(function() {
+		console.log("writeAtom");
+	
 		var link = $(this);
 		$.ajax({ url: link.attr("href"),
 			beforeSend: function(req) { 
@@ -608,6 +620,8 @@ $(document).ready(function() {
 	});
 	
 	$("#readRss").submit(function() {
+		console.log("readRss");
+	
 		var form = $(this);
 		var button = form.children(":first");
 		$.ajax({ type: "POST", url: form.attr("action"), data: '<?xml version="1.0" encoding="UTF-8"?> <rss version="2.0"><channel><title>My RSS feed</title></channel></rss>', contentType: "application/rss+xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});

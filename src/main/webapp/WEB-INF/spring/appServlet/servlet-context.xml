@@ -15,7 +15,7 @@
 		<argument-resolvers>
 			<beans:bean class="org.springframework.samples.mvc.data.custom.CustomArgumentResolver"/>
 		</argument-resolvers>
-		<async-support default-timeout="3000">
+		<async-support default-timeout="6000">
 			<callable-interceptors>
 				<beans:bean class="org.springframework.samples.mvc.async.TimeoutCallableProcessingInterceptor" />
 			</callable-interceptors>
